@@ -17,7 +17,8 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-change-me-in-production')
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
 _raw_hosts = [h.strip() for h in os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',') if h.strip()]
-ALLOWED_HOSTS = sorted(set(_raw_hosts + ['testserver']))
+_default_hosts = ['localhost', '127.0.0.1', 'testserver', '.onrender.com']
+ALLOWED_HOSTS = sorted(set(_raw_hosts + _default_hosts))
 
 # ─── Installed Apps ────────────────────────────────────────────────────────────
 INSTALLED_APPS = [
@@ -165,6 +166,14 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CORS_ALLOW_CREDENTIALS = True
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.onrender.com',
+    'https://localhost',
+    'https://127.0.0.1',
+    'http://localhost',
+    'http://127.0.0.1',
+]
 
 CORS_ALLOW_HEADERS = [
     'accept',
