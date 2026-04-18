@@ -1,0 +1,13 @@
+# Dependencies and build
+node_modules/
+dist/
+
+# Local env
+.env
+.env.*
+!.env.example
+
+# Vercel and local caches
+.vercel/
+.vite/
+.eslintcache
